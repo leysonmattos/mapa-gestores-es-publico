@@ -241,6 +241,96 @@ class TelaCheiaEmIframe(MacroElement):
         self._name = "TelaCheiaEmIframe"
 
 
+class PaineisRecolhiveisEmTelaCheia(MacroElement):
+    """Em tela cheia, recolhe o seletor de camadas e a tabela de gestores.
+
+    Expandidos, os dois painéis cobrem boa parte do mapa — o que incomoda
+    justamente em tela cheia, quando a intenção é ver o mapa. Aqui eles viram
+    botões pequenos: um clique abre, o "x" volta a recolher. Ao sair da tela
+    cheia tudo retorna ao estado expandido de sempre.
+
+    Para o seletor de camadas basta alternar a classe
+    leaflet-control-layers-expanded: a própria folha de estilo do Leaflet já
+    troca entre o ícone e a lista, então não é preciso recriar o controle.
+    """
+
+    _template = Template("""
+        {% macro script(this, kwargs) %}
+            setTimeout(function () {
+                var mapObj = {{ this._parent.get_name() }};
+                var area = mapObj.getContainer();
+
+                function novoBotao(classe, conteudo, titulo) {
+                    var b = L.DomUtil.create('button', classe);
+                    b.type = 'button';
+                    b.innerHTML = conteudo;
+                    b.title = titulo;
+                    b.setAttribute('aria-label', titulo);
+                    L.DomEvent.disableClickPropagation(b);
+                    return b;
+                }
+
+                // --- Seletor de camadas (controle nativo do Leaflet) ---
+                var camadas = area.querySelector('.leaflet-control-layers');
+                var abrirCamadas = camadas && camadas.querySelector('.leaflet-control-layers-toggle');
+                var fecharCamadas = null;
+                if (camadas) {
+                    fecharCamadas = novoBotao('botao-recolher-painel', '&times;', 'Recolher');
+                    camadas.appendChild(fecharCamadas);
+                    L.DomEvent.on(fecharCamadas, 'click', function () {
+                        L.DomUtil.removeClass(camadas, 'leaflet-control-layers-expanded');
+                    });
+                    if (abrirCamadas) {
+                        L.DomEvent.on(abrirCamadas, 'click', function (e) {
+                            L.DomEvent.stop(e);
+                            L.DomUtil.addClass(camadas, 'leaflet-control-layers-expanded');
+                        });
+                    }
+                }
+
+                // --- Tabela de gestores (painel próprio) ---
+                var legenda = area.querySelector('.leaflet-legend-gestores');
+                var abrirLegenda = null;
+                if (legenda) {
+                    abrirLegenda = novoBotao('botao-abrir-legenda', '📍', 'Mostrar gestores / regiões');
+                    legenda.parentNode.insertBefore(abrirLegenda, legenda);
+                    L.DomEvent.disableClickPropagation(legenda);
+
+                    var fecharLegenda = novoBotao('botao-recolher-painel', '&times;', 'Recolher');
+                    legenda.insertBefore(fecharLegenda, legenda.firstChild);
+
+                    abrirLegenda.style.display = 'none';
+                    L.DomEvent.on(abrirLegenda, 'click', function () {
+                        L.DomUtil.addClass(legenda, 'painel-aberto');
+                        abrirLegenda.style.display = 'none';
+                    });
+                    L.DomEvent.on(fecharLegenda, 'click', function () {
+                        L.DomUtil.removeClass(legenda, 'painel-aberto');
+                        abrirLegenda.style.display = 'flex';
+                    });
+                }
+
+                mapObj.on('enterFullscreen', function () {
+                    L.DomUtil.addClass(area, 'mapa-tela-cheia');
+                    if (camadas) { L.DomUtil.removeClass(camadas, 'leaflet-control-layers-expanded'); }
+                    if (legenda) { L.DomUtil.removeClass(legenda, 'painel-aberto'); }
+                    if (abrirLegenda) { abrirLegenda.style.display = 'flex'; }
+                });
+
+                mapObj.on('exitFullscreen', function () {
+                    L.DomUtil.removeClass(area, 'mapa-tela-cheia');
+                    if (camadas) { L.DomUtil.addClass(camadas, 'leaflet-control-layers-expanded'); }
+                    if (abrirLegenda) { abrirLegenda.style.display = 'none'; }
+                });
+            }, 0);
+        {% endmacro %}
+    """)
+
+    def __init__(self):
+        super().__init__()
+        self._name = "PaineisRecolhiveisEmTelaCheia"
+
+
 COLOR_PALETTES = {
     'Azul e Verde (YlGnBu)': ['#ffffcc', '#a1dab4', '#41b6c4', '#2c7fb8', '#253494'],
     'Tons de Azul (Blues)': ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
@@ -619,6 +709,66 @@ class ESMapGenerator:
                 opacity: 1 !important;
             }
 
+            /* --- Painéis recolhíveis em tela cheia ---------------------------
+               Fora da tela cheia estes botões não existem para o usuário: o
+               seletor de camadas e a tabela de gestores seguem expandidos como
+               sempre. Em tela cheia eles viram botões de 38px, para o mapa
+               aparecer inteiro. */
+            .botao-abrir-legenda,
+            .botao-recolher-painel {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.96);
+                border: 1.5px solid rgba(15, 23, 42, 0.18);
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+                cursor: pointer;
+                padding: 0;
+                line-height: 1;
+                color: #0f172a;
+            }
+            .botao-abrir-legenda {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
+                margin-left: auto;
+            }
+            .botao-recolher-painel {
+                width: 24px;
+                height: 24px;
+                font-size: 17px;
+                font-weight: 700;
+                border-radius: 8px;
+                box-shadow: none;
+                background: rgba(148, 163, 184, 0.16);
+                border: 1px solid rgba(15, 23, 42, 0.14);
+            }
+
+            /* Estado recolhido: some o painel, aparece o botão */
+            .mapa-tela-cheia .leaflet-legend-gestores:not(.painel-aberto) {
+                display: none !important;
+            }
+            .mapa-tela-cheia .leaflet-legend-gestores .botao-recolher-painel,
+            .mapa-tela-cheia .leaflet-control-layers-expanded .botao-recolher-painel {
+                display: flex;
+                position: absolute;
+                top: 6px;
+                right: 6px;
+                z-index: 5;
+            }
+            .mapa-tela-cheia .leaflet-legend-gestores,
+            .mapa-tela-cheia .leaflet-control-layers-expanded {
+                position: relative;
+            }
+            /* O "x" não deve sobrepor o conteúdo do painel */
+            .mapa-tela-cheia .leaflet-legend-gestores.painel-aberto > div:first-of-type {
+                padding-right: 28px;
+            }
+            .mapa-tela-cheia .leaflet-control-layers-expanded .leaflet-control-layers-list {
+                padding-right: 24px;
+            }
+
             /* Em telas estreitas a atribuição dos tiles ocupava quatro linhas
                sobre o mapa. Reduzida, não ocultada: creditar a fonte dos tiles
                é exigência de licença do OpenStreetMap e do Esri. */
@@ -779,6 +929,9 @@ class ESMapGenerator:
             )
             legend_control = DockedMuniAndLegendControl(card_content, modo_publico=modo_publico)
             m.add_child(legend_control)
+
+        # Depois da legenda: o script precisa encontrá-la já no DOM.
+        m.add_child(PaineisRecolhiveisEmTelaCheia())
 
         return m
 
