@@ -1,0 +1,11 @@
+# Painel web
+streamlit>=1.30.0
+streamlit-folium>=0.17.0
+
+# Mapa interativo (Folium/Leaflet)
+folium>=0.15.0
+branca>=0.7.0
+jinja2>=3.1.0
+
+# Dados
+pandas>=2.0.0

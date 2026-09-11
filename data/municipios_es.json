@@ -1,0 +1,704 @@
+[
+  {
+    "Codigo_IBGE": "3200102",
+    "Municipio": "Afonso Cláudio",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 30684,
+    "Area_km2": 954.7,
+    "Densidade_Demografica": 32.14
+  },
+  {
+    "Codigo_IBGE": "3200201",
+    "Municipio": "Alegre",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 29177,
+    "Area_km2": 772.7,
+    "Densidade_Demografica": 37.76
+  },
+  {
+    "Codigo_IBGE": "3200300",
+    "Municipio": "Alfredo Chaves",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 13836,
+    "Area_km2": 615.6,
+    "Densidade_Demografica": 22.48
+  },
+  {
+    "Codigo_IBGE": "3200359",
+    "Municipio": "Alto Rio Novo",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 7434,
+    "Area_km2": 227.7,
+    "Densidade_Demografica": 32.65
+  },
+  {
+    "Codigo_IBGE": "3200409",
+    "Municipio": "Anchieta",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 29984,
+    "Area_km2": 407.8,
+    "Densidade_Demografica": 73.53
+  },
+  {
+    "Codigo_IBGE": "3200508",
+    "Municipio": "Apiacá",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 7223,
+    "Area_km2": 193.6,
+    "Densidade_Demografica": 37.31
+  },
+  {
+    "Codigo_IBGE": "3200607",
+    "Municipio": "Aracruz",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 94765,
+    "Area_km2": 1436.0,
+    "Densidade_Demografica": 65.99
+  },
+  {
+    "Codigo_IBGE": "3200706",
+    "Municipio": "Atílio Vivácqua",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 10540,
+    "Area_km2": 226.8,
+    "Densidade_Demografica": 46.47
+  },
+  {
+    "Codigo_IBGE": "3200805",
+    "Municipio": "Baixo Guandu",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 30674,
+    "Area_km2": 917.9,
+    "Densidade_Demografica": 33.42
+  },
+  {
+    "Codigo_IBGE": "3200904",
+    "Municipio": "Barra de São Francisco",
+    "Microrregiao": "Barra de São Francisco",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 42498,
+    "Area_km2": 933.8,
+    "Densidade_Demografica": 45.51
+  },
+  {
+    "Codigo_IBGE": "3201001",
+    "Municipio": "Boa Esperança",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 13608,
+    "Area_km2": 428.6,
+    "Densidade_Demografica": 31.75
+  },
+  {
+    "Codigo_IBGE": "3201100",
+    "Municipio": "Bom Jesus do Norte",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 10254,
+    "Area_km2": 89.0,
+    "Densidade_Demografica": 115.21
+  },
+  {
+    "Codigo_IBGE": "3201159",
+    "Municipio": "Brejetuba",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 12985,
+    "Area_km2": 342.5,
+    "Densidade_Demografica": 37.91
+  },
+  {
+    "Codigo_IBGE": "3201209",
+    "Municipio": "Cachoeiro de Itapemirim",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 185786,
+    "Area_km2": 876.8,
+    "Densidade_Demografica": 211.89
+  },
+  {
+    "Codigo_IBGE": "3201308",
+    "Municipio": "Cariacica",
+    "Microrregiao": "Vitória",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 353491,
+    "Area_km2": 280.0,
+    "Densidade_Demografica": 1262.47
+  },
+  {
+    "Codigo_IBGE": "3201407",
+    "Municipio": "Castelo",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 36930,
+    "Area_km2": 664.2,
+    "Densidade_Demografica": 55.6
+  },
+  {
+    "Codigo_IBGE": "3201506",
+    "Municipio": "Colatina",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 120033,
+    "Area_km2": 1423.3,
+    "Densidade_Demografica": 84.33
+  },
+  {
+    "Codigo_IBGE": "3201605",
+    "Municipio": "Conceição da Barra",
+    "Microrregiao": "São Mateus",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 27458,
+    "Area_km2": 1187.8,
+    "Densidade_Demografica": 23.12
+  },
+  {
+    "Codigo_IBGE": "3201704",
+    "Municipio": "Conceição do Castelo",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 11937,
+    "Area_km2": 369.3,
+    "Densidade_Demografica": 32.32
+  },
+  {
+    "Codigo_IBGE": "3201803",
+    "Municipio": "Divino de São Lourenço",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 5083,
+    "Area_km2": 175.8,
+    "Densidade_Demografica": 28.91
+  },
+  {
+    "Codigo_IBGE": "3201902",
+    "Municipio": "Domingos Martins",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 35416,
+    "Area_km2": 1225.3,
+    "Densidade_Demografica": 28.9
+  },
+  {
+    "Codigo_IBGE": "3202009",
+    "Municipio": "Dores do Rio Preto",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 6596,
+    "Area_km2": 158.5,
+    "Densidade_Demografica": 41.62
+  },
+  {
+    "Codigo_IBGE": "3202108",
+    "Municipio": "Ecoporanga",
+    "Microrregiao": "Barra de São Francisco",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 21992,
+    "Area_km2": 2283.2,
+    "Densidade_Demografica": 9.63
+  },
+  {
+    "Codigo_IBGE": "3202207",
+    "Municipio": "Fundão",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 18014,
+    "Area_km2": 279.5,
+    "Densidade_Demografica": 64.45
+  },
+  {
+    "Codigo_IBGE": "3202256",
+    "Municipio": "Governador Lindenberg",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 11009,
+    "Area_km2": 359.6,
+    "Densidade_Demografica": 30.61
+  },
+  {
+    "Codigo_IBGE": "3202405",
+    "Municipio": "Guarapari",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 124656,
+    "Area_km2": 595.5,
+    "Densidade_Demografica": 209.33
+  },
+  {
+    "Codigo_IBGE": "3202306",
+    "Municipio": "Guaçuí",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 29358,
+    "Area_km2": 467.8,
+    "Densidade_Demografica": 62.76
+  },
+  {
+    "Codigo_IBGE": "3202454",
+    "Municipio": "Ibatiba",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 25380,
+    "Area_km2": 241.1,
+    "Densidade_Demografica": 105.27
+  },
+  {
+    "Codigo_IBGE": "3202504",
+    "Municipio": "Ibiraçu",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 11723,
+    "Area_km2": 199.8,
+    "Densidade_Demografica": 58.67
+  },
+  {
+    "Codigo_IBGE": "3202553",
+    "Municipio": "Ibitirama",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 9520,
+    "Area_km2": 329.4,
+    "Densidade_Demografica": 28.9
+  },
+  {
+    "Codigo_IBGE": "3202603",
+    "Municipio": "Iconha",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 12326,
+    "Area_km2": 202.9,
+    "Densidade_Demografica": 60.75
+  },
+  {
+    "Codigo_IBGE": "3202652",
+    "Municipio": "Irupi",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 13710,
+    "Area_km2": 184.4,
+    "Densidade_Demografica": 74.35
+  },
+  {
+    "Codigo_IBGE": "3202702",
+    "Municipio": "Itaguaçu",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 13589,
+    "Area_km2": 530.4,
+    "Densidade_Demografica": 25.62
+  },
+  {
+    "Codigo_IBGE": "3202801",
+    "Municipio": "Itapemirim",
+    "Microrregiao": "Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 39832,
+    "Area_km2": 557.3,
+    "Densidade_Demografica": 71.47
+  },
+  {
+    "Codigo_IBGE": "3202900",
+    "Municipio": "Itarana",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 10597,
+    "Area_km2": 299.1,
+    "Densidade_Demografica": 35.43
+  },
+  {
+    "Codigo_IBGE": "3203007",
+    "Municipio": "Iúna",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 28590,
+    "Area_km2": 460.4,
+    "Densidade_Demografica": 62.1
+  },
+  {
+    "Codigo_IBGE": "3203056",
+    "Municipio": "Jaguaré",
+    "Microrregiao": "São Mateus",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 28931,
+    "Area_km2": 656.4,
+    "Densidade_Demografica": 44.08
+  },
+  {
+    "Codigo_IBGE": "3203106",
+    "Municipio": "Jerônimo Monteiro",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 11575,
+    "Area_km2": 162.2,
+    "Densidade_Demografica": 71.36
+  },
+  {
+    "Codigo_IBGE": "3203130",
+    "Municipio": "João Neiva",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 14079,
+    "Area_km2": 272.8,
+    "Densidade_Demografica": 51.61
+  },
+  {
+    "Codigo_IBGE": "3203163",
+    "Municipio": "Laranja da Terra",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 11094,
+    "Area_km2": 457.0,
+    "Densidade_Demografica": 24.28
+  },
+  {
+    "Codigo_IBGE": "3203205",
+    "Municipio": "Linhares",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 166786,
+    "Area_km2": 3501.6,
+    "Densidade_Demografica": 47.63
+  },
+  {
+    "Codigo_IBGE": "3203304",
+    "Municipio": "Mantenópolis",
+    "Microrregiao": "Barra de São Francisco",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 12770,
+    "Area_km2": 320.7,
+    "Densidade_Demografica": 39.82
+  },
+  {
+    "Codigo_IBGE": "3203320",
+    "Municipio": "Marataízes",
+    "Microrregiao": "Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 41929,
+    "Area_km2": 135.4,
+    "Densidade_Demografica": 309.67
+  },
+  {
+    "Codigo_IBGE": "3203346",
+    "Municipio": "Marechal Floriano",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 17641,
+    "Area_km2": 286.1,
+    "Densidade_Demografica": 61.66
+  },
+  {
+    "Codigo_IBGE": "3203353",
+    "Municipio": "Marilândia",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 12387,
+    "Area_km2": 309.4,
+    "Densidade_Demografica": 40.04
+  },
+  {
+    "Codigo_IBGE": "3203403",
+    "Municipio": "Mimoso do Sul",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 24475,
+    "Area_km2": 867.3,
+    "Densidade_Demografica": 28.22
+  },
+  {
+    "Codigo_IBGE": "3203502",
+    "Municipio": "Montanha",
+    "Microrregiao": "Montanha",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 18900,
+    "Area_km2": 1097.9,
+    "Densidade_Demografica": 17.21
+  },
+  {
+    "Codigo_IBGE": "3203601",
+    "Municipio": "Mucurici",
+    "Microrregiao": "Montanha",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 5466,
+    "Area_km2": 538.8,
+    "Densidade_Demografica": 10.14
+  },
+  {
+    "Codigo_IBGE": "3203700",
+    "Municipio": "Muniz Freire",
+    "Microrregiao": "Alegre",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 18153,
+    "Area_km2": 679.9,
+    "Densidade_Demografica": 26.7
+  },
+  {
+    "Codigo_IBGE": "3203809",
+    "Municipio": "Muqui",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 13745,
+    "Area_km2": 326.9,
+    "Densidade_Demografica": 42.05
+  },
+  {
+    "Codigo_IBGE": "3203908",
+    "Municipio": "Nova Venécia",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 49065,
+    "Area_km2": 1448.4,
+    "Densidade_Demografica": 33.88
+  },
+  {
+    "Codigo_IBGE": "3204005",
+    "Municipio": "Pancas",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 18893,
+    "Area_km2": 823.8,
+    "Densidade_Demografica": 22.93
+  },
+  {
+    "Codigo_IBGE": "3204054",
+    "Municipio": "Pedro Canário",
+    "Microrregiao": "São Mateus",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 21522,
+    "Area_km2": 434.1,
+    "Densidade_Demografica": 49.58
+  },
+  {
+    "Codigo_IBGE": "3204104",
+    "Municipio": "Pinheiros",
+    "Microrregiao": "Montanha",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 23915,
+    "Area_km2": 975.4,
+    "Densidade_Demografica": 24.52
+  },
+  {
+    "Codigo_IBGE": "3204203",
+    "Municipio": "Piúma",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 22300,
+    "Area_km2": 74.6,
+    "Densidade_Demografica": 298.93
+  },
+  {
+    "Codigo_IBGE": "3204252",
+    "Municipio": "Ponto Belo",
+    "Microrregiao": "Montanha",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 6497,
+    "Area_km2": 356.2,
+    "Densidade_Demografica": 18.24
+  },
+  {
+    "Codigo_IBGE": "3204302",
+    "Municipio": "Presidente Kennedy",
+    "Microrregiao": "Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 13696,
+    "Area_km2": 586.5,
+    "Densidade_Demografica": 23.35
+  },
+  {
+    "Codigo_IBGE": "3204351",
+    "Municipio": "Rio Bananal",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 19274,
+    "Area_km2": 645.5,
+    "Densidade_Demografica": 29.86
+  },
+  {
+    "Codigo_IBGE": "3204401",
+    "Municipio": "Rio Novo do Sul",
+    "Microrregiao": "Guarapari",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 11069,
+    "Area_km2": 203.7,
+    "Densidade_Demografica": 54.34
+  },
+  {
+    "Codigo_IBGE": "3204500",
+    "Municipio": "Santa Leopoldina",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 13106,
+    "Area_km2": 716.4,
+    "Densidade_Demografica": 18.29
+  },
+  {
+    "Codigo_IBGE": "3204559",
+    "Municipio": "Santa Maria de Jetibá",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 41636,
+    "Area_km2": 735.6,
+    "Densidade_Demografica": 56.6
+  },
+  {
+    "Codigo_IBGE": "3204609",
+    "Municipio": "Santa Teresa",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 22808,
+    "Area_km2": 694.5,
+    "Densidade_Demografica": 32.84
+  },
+  {
+    "Codigo_IBGE": "3205002",
+    "Municipio": "Serra",
+    "Microrregiao": "Vitória",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 520653,
+    "Area_km2": 553.5,
+    "Densidade_Demografica": 940.66
+  },
+  {
+    "Codigo_IBGE": "3205010",
+    "Municipio": "Sooretama",
+    "Microrregiao": "Linhares",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 26502,
+    "Area_km2": 593.4,
+    "Densidade_Demografica": 44.66
+  },
+  {
+    "Codigo_IBGE": "3204658",
+    "Municipio": "São Domingos do Norte",
+    "Microrregiao": "Colatina",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 8589,
+    "Area_km2": 299.5,
+    "Densidade_Demografica": 28.68
+  },
+  {
+    "Codigo_IBGE": "3204708",
+    "Municipio": "São Gabriel da Palha",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 32252,
+    "Area_km2": 432.8,
+    "Densidade_Demografica": 74.52
+  },
+  {
+    "Codigo_IBGE": "3204807",
+    "Municipio": "São José do Calçado",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 10878,
+    "Area_km2": 272.6,
+    "Densidade_Demografica": 39.9
+  },
+  {
+    "Codigo_IBGE": "3204906",
+    "Municipio": "São Mateus",
+    "Microrregiao": "São Mateus",
+    "Mesorregiao": "Litoral Norte Espírito-santense",
+    "Populacao_IBGE_2022": 123752,
+    "Area_km2": 2343.2,
+    "Densidade_Demografica": 52.81
+  },
+  {
+    "Codigo_IBGE": "3204955",
+    "Municipio": "São Roque do Canaã",
+    "Microrregiao": "Santa Teresa",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 10886,
+    "Area_km2": 342.4,
+    "Densidade_Demografica": 31.79
+  },
+  {
+    "Codigo_IBGE": "3205036",
+    "Municipio": "Vargem Alta",
+    "Microrregiao": "Cachoeiro de Itapemirim",
+    "Mesorregiao": "Sul Espírito-santense",
+    "Populacao_IBGE_2022": 19563,
+    "Area_km2": 414.7,
+    "Densidade_Demografica": 47.17
+  },
+  {
+    "Codigo_IBGE": "3205069",
+    "Municipio": "Venda Nova do Imigrante",
+    "Microrregiao": "Afonso Cláudio",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 23831,
+    "Area_km2": 187.9,
+    "Densidade_Demografica": 126.83
+  },
+  {
+    "Codigo_IBGE": "3205101",
+    "Municipio": "Viana",
+    "Microrregiao": "Vitória",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 73423,
+    "Area_km2": 311.6,
+    "Densidade_Demografica": 235.63
+  },
+  {
+    "Codigo_IBGE": "3205150",
+    "Municipio": "Vila Pavão",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 8911,
+    "Area_km2": 432.7,
+    "Densidade_Demografica": 20.59
+  },
+  {
+    "Codigo_IBGE": "3205176",
+    "Municipio": "Vila Valério",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 13728,
+    "Area_km2": 464.4,
+    "Densidade_Demografica": 29.56
+  },
+  {
+    "Codigo_IBGE": "3205200",
+    "Municipio": "Vila Velha",
+    "Microrregiao": "Vitória",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 467722,
+    "Area_km2": 212.4,
+    "Densidade_Demografica": 2202.08
+  },
+  {
+    "Codigo_IBGE": "3205309",
+    "Municipio": "Vitória",
+    "Microrregiao": "Vitória",
+    "Mesorregiao": "Central Espírito-santense",
+    "Populacao_IBGE_2022": 322869,
+    "Area_km2": 98.5,
+    "Densidade_Demografica": 3277.86
+  },
+  {
+    "Codigo_IBGE": "3200169",
+    "Municipio": "Água Doce do Norte",
+    "Microrregiao": "Barra de São Francisco",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 12042,
+    "Area_km2": 484.0,
+    "Densidade_Demografica": 24.88
+  },
+  {
+    "Codigo_IBGE": "3200136",
+    "Municipio": "Águia Branca",
+    "Microrregiao": "Nova Venécia",
+    "Mesorregiao": "Noroeste Espírito-santense",
+    "Populacao_IBGE_2022": 9711,
+    "Area_km2": 449.6,
+    "Densidade_Demografica": 21.6
+  }
+]

@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Segredos do Streamlit (nunca versionar)
+.streamlit/secrets.toml
+
+# Configuração pessoal do Claude Code
+.claude/settings.local.json
