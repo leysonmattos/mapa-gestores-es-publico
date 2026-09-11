@@ -6,6 +6,11 @@ detalhes do município: se os telefones ficassem duplicados nos dois aplicativos
 uma atualização em um deles passaria despercebida no outro.
 """
 
+from functools import lru_cache
+from pathlib import Path
+
+import streamlit as st
+
 # Mapeamento Oficial de Contatos e Cores dos Gestores
 GESTOR_INFO = {
     'BRUNA': {
@@ -103,8 +108,86 @@ CSS_BASE = """
         color: var(--acento-pf);
         font-weight: 600;
     }
+    /* Botões sobre fundo colorido próprio. O Streamlit pinta todo <a> com a cor
+       de link do tema, e o estilo inline não vence essa regra — o texto saía
+       azul sobre o verde do WhatsApp. Seletor mais específico e posterior. */
+    .stApp a.btn-solido,
+    .stApp a.btn-solido:link,
+    .stApp a.btn-solido:visited,
+    .stApp a.btn-solido:hover,
+    .stApp a.btn-solido:active {
+        color: #ffffff !important;
+        text-decoration: none !important;
+    }
 </style>
 """
+
+
+# --- Logotipo institucional ---------------------------------------------------
+# Cores originais da marca, por classe do SVG.
+CORES_LOGO = {
+    'st0': '#449f46',  # verde
+    'st1': '#231f20',  # texto quase preto
+    'st2': '#145760',  # azul-petróleo
+    'st3': '#6d6e71',  # cinza
+}
+
+CAMINHO_LOGO = Path(__file__).resolve().parent.parent / 'assets' / 'cref22-es.svg'
+
+
+@lru_cache(maxsize=1)
+def _svg_logo() -> str:
+    """SVG do logo sem o <style> interno, para que o CSS da página comande as cores."""
+    import re
+    svg = CAMINHO_LOGO.read_text(encoding='utf-8')
+    svg = re.sub(r'<\?xml[^>]*\?>', '', svg)
+    svg = re.sub(r'<!--.*?-->', '', svg, flags=re.S)
+    svg = re.sub(r'<defs>.*?</defs>', '', svg, flags=re.S)
+    svg = svg.replace('id="Layer_1"', 'id="logo-cref22" aria-label="CREF22/ES" role="img"', 1)
+    return svg.strip()
+
+
+def logo_cref22(altura_rem=3.4):
+    """Logotipo do CREF22/ES, com as cores adaptadas ao tema.
+
+    No tema claro usa as cores oficiais da marca; no escuro fica todo branco,
+    porque o texto original (#231f20) tem contraste 1,16 sobre o fundo escuro do
+    Streamlit — ficaria invisível.
+
+    A escolha é feita por duas vias que se complementam, já que o Streamlit não
+    publica variáveis CSS de tema: a media query cobre quem usa o tema do
+    sistema (o padrão), e a classe vinda de st.context.theme cobre quem escolheu
+    claro ou escuro explicitamente no menu do Streamlit, tendo precedência por
+    ser mais específica. Só um toque no seletor de tema no meio da sessão fica
+    momentaneamente desalinhado, até a próxima interação.
+    """
+    try:
+        tema = st.context.theme.type
+    except Exception:
+        tema = None
+    classe = {'light': 'claro', 'dark': 'escuro'}.get(tema, '')
+
+    regras_marca = ' '.join(
+        f'#logo-cref22 .{cls} {{ fill: {cor}; }}' for cls, cor in CORES_LOGO.items()
+    )
+    regras_marca_explicita = ' '.join(
+        f'#logo-cref22.claro .{cls} {{ fill: {cor}; }}' for cls, cor in CORES_LOGO.items()
+    )
+    seletores = ', '.join(f'#logo-cref22 .{cls}' for cls in CORES_LOGO)
+    seletores_escuro = ', '.join(f'#logo-cref22.escuro .{cls}' for cls in CORES_LOGO)
+
+    css = f"""<style>
+    #logo-cref22 {{ height: {altura_rem}rem; width: auto; max-width: 100%; display: block; margin-bottom: 0.55rem; }}
+    {regras_marca}
+    @media (prefers-color-scheme: dark) {{ {seletores} {{ fill: #ffffff; }} }}
+    {regras_marca_explicita}
+    {seletores_escuro} {{ fill: #ffffff; }}
+    </style>"""
+
+    svg = _svg_logo()
+    if classe:
+        svg = svg.replace('id="logo-cref22"', f'id="logo-cref22" class="{classe}"', 1)
+    return css + svg
 
 
 def fmt_int(n):
@@ -175,7 +258,7 @@ def card_municipio(linha, incluir_pf_pj=True):
 
     if g_info['wa_link']:
         botao_whatsapp = f"""
-            <a href="{g_info['wa_link']}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background-color: #25D366; color: #ffffff !important; text-decoration: none; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 2px 4px rgba(37,211,102,0.3); transition: all 0.2s ease;">
+            <a class="btn-solido" href="{g_info['wa_link']}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background-color: #25D366; color: #ffffff !important; text-decoration: none; padding: 0.5rem 0.8rem; border-radius: 8px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 2px 4px rgba(37,211,102,0.3); transition: all 0.2s ease;">
                 <span style="font-size: 1.1rem;">💬</span> Chamar no WhatsApp
             </a>
         """

@@ -15,7 +15,7 @@ from streamlit_folium import st_folium
 from src.base_municipios import BaseMunicipios
 from src.map_generator import ESMapGenerator
 from src.ui_comum import (GESTOR_INFO, CSS_BASE, html_block, hex_rgba,
-                          card_municipio)
+                          card_municipio, logo_cref22)
 
 st.set_page_config(
     page_title="Mapa de Gestores - CREF22/ES",
@@ -59,7 +59,7 @@ with st.sidebar:
                 <span style="font-weight: 800; font-size: 0.92rem; color: inherit;">{g['nome']}</span>
             </div>
             <div style="font-size: 0.74rem; color: inherit; opacity: 0.75; margin-bottom: 0.35rem;">🗂️ {g['regiao']}</div>
-            <a href="{g['wa_link']}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background-color: #25D366; color: #ffffff !important; text-decoration: none; padding: 0.32rem 0.6rem; border-radius: 6px; font-size: 0.76rem; font-weight: 700;">
+            <a class="btn-solido" href="{g['wa_link']}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background-color: #25D366; color: #ffffff !important; text-decoration: none; padding: 0.32rem 0.6rem; border-radius: 6px; font-size: 0.76rem; font-weight: 700;">
                 💬 {g['fone']}
             </a>
         </div>
@@ -73,6 +73,7 @@ df = carregar_dados()
 geojson = loader.get_enriched_geojson(df)
 
 # ==================== CABEÇALHO ====================
+st.markdown(logo_cref22(), unsafe_allow_html=True)
 st.markdown('<div class="main-title">🗺️ Mapa de Gestores - CREF22/ES</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="sub-title">Encontre o <b>gestor responsável</b> pelo seu município e fale direto com ele</div>',
