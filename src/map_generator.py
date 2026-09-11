@@ -186,25 +186,27 @@ class TelaCheiaEmIframe(MacroElement):
     não muda quase nada.
 
     Aqui o pseudo fullscreen é usado em todas as plataformas e, junto dele, o
-    próprio iframe é esticado para cobrir a janela da página que o contém. Fora
-    de um iframe o controle padrão já basta e nada é alterado.
+    próprio iframe é esticado para cobrir a janela da página que o contém.
+
+    O estado fica marcado no dataset do iframe, não numa variável do script.
+    Clicar num município faz o st_folium devolver o dado e o Streamlit
+    reexecutar a página, o que remonta o mapa do zero — mas o elemento iframe
+    sobrevive. Sem essa marca, o mapa recém-criado nasceria no tamanho normal
+    dentro de um quadro ainda esticado, que era a tela embaralhada relatada.
     """
 
     _template = Template("""
         {% macro script(this, kwargs) %}
-            (function () {
+            setTimeout(function () {
                 var mapObj = {{ this._parent.get_name() }};
 
                 var quadro = null;
                 try { quadro = window.frameElement; } catch (e) { quadro = null; }
                 if (!quadro) { return; }
 
-                var estiloAnterior = quadro.getAttribute('style');
                 var paginaPai = quadro.ownerDocument;
-                var overflowAnterior = null;
 
-                mapObj.on('enterFullscreen', function () {
-                    estiloAnterior = quadro.getAttribute('style');
+                function esticar() {
                     quadro.style.position = 'fixed';
                     quadro.style.top = '0';
                     quadro.style.left = '0';
@@ -212,27 +214,45 @@ class TelaCheiaEmIframe(MacroElement):
                     quadro.style.maxWidth = '100vw';
                     quadro.style.height = '100vh';
                     quadro.style.zIndex = '2147483647';
-                    try {
-                        overflowAnterior = paginaPai.body.style.overflow;
-                        paginaPai.body.style.overflow = 'hidden';
-                    } catch (e) { /* página pai inacessível: só o iframe expande */ }
+                    quadro.dataset.telaCheia = '1';
+                    try { paginaPai.body.style.overflow = 'hidden'; } catch (e) { }
                     setTimeout(function () { mapObj.invalidateSize(); }, 80);
+                }
+
+                function encolher() {
+                    var anterior = quadro.dataset.estiloOriginal;
+                    if (anterior) {
+                        quadro.setAttribute('style', anterior);
+                    } else {
+                        quadro.removeAttribute('style');
+                    }
+                    delete quadro.dataset.telaCheia;
+                    delete quadro.dataset.estiloOriginal;
+                    try { paginaPai.body.style.overflow = ''; } catch (e) { }
+                    setTimeout(function () { mapObj.invalidateSize(); }, 80);
+                }
+
+                mapObj.on('enterFullscreen', function () {
+                    if (quadro.dataset.telaCheia !== '1') {
+                        quadro.dataset.estiloOriginal = quadro.getAttribute('style') || '';
+                    }
+                    esticar();
                 });
 
-                mapObj.on('exitFullscreen', function () {
-                    if (estiloAnterior === null) {
-                        quadro.removeAttribute('style');
-                    } else {
-                        quadro.setAttribute('style', estiloAnterior);
-                    }
-                    try {
-                        if (overflowAnterior !== null) {
-                            paginaPai.body.style.overflow = overflowAnterior;
-                        }
-                    } catch (e) { /* idem */ }
-                    setTimeout(function () { mapObj.invalidateSize(); }, 80);
-                });
-            })();
+                mapObj.on('exitFullscreen', encolher);
+
+                // Retoma a tela cheia depois de uma reexecução do Streamlit.
+                // O clique passa pelo próprio controle do plugin, para que o
+                // estado interno dele e o ícone do botão fiquem coerentes.
+                // O setTimeout aninhado garante que isso rode depois que os
+                // demais elementos do mapa já registraram seus ouvintes.
+                if (quadro.dataset.telaCheia === '1') {
+                    setTimeout(function () {
+                        var botao = mapObj.getContainer().querySelector('.leaflet-control-zoom-fullscreen');
+                        if (botao) { botao.click(); }
+                    }, 0);
+                }
+            }, 0);
         {% endmacro %}
     """)
 
@@ -437,7 +457,8 @@ class ESMapGenerator:
         group3_active: bool = True,
         group4_active: bool = True,
         show_colorbar: bool = False,
-        modo_publico: bool = False
+        modo_publico: bool = False,
+        ocultar_card_no_celular: bool = False
     ) -> folium.Map:
         """
         Gera um mapa interativo e coroplético do Espírito Santo com popups e tooltips ricos.
@@ -805,6 +826,21 @@ class ESMapGenerator:
             }
         </style>
         """
+        if ocultar_card_no_celular:
+            # Em telas estreitas o card sobre o mapa repete o painel "Detalhes do
+            # Município", que fica logo abaixo quando as colunas do Streamlit se
+            # empilham — e ocupa quase toda a altura útil. O tooltip do Leaflet,
+            # que abre no toque, continua dando o resumo do município.
+            # O corte usa a largura do iframe: ~358px no celular contra ~667px
+            # no desktop, medidos em navegador.
+            custom_css += """
+        <style>
+            @media (max-width: 640px) {
+                .leaflet-muni-card-fixed { display: none !important; }
+            }
+        </style>
+        """
+
         m.get_root().header.add_child(folium.Element(custom_css))
 
         # Criar Camada GeoJson com Tooltips Interativos
@@ -946,7 +982,8 @@ class ESMapGenerator:
         group3_active: bool = True,
         group4_active: bool = True,
         show_colorbar: bool = False,
-        modo_publico: bool = False
+        modo_publico: bool = False,
+        ocultar_card_no_celular: bool = False
     ):
         """Salva o mapa em formato HTML autônomo."""
         m = self.create_map(
@@ -958,7 +995,8 @@ class ESMapGenerator:
             group3_active=group3_active,
             group4_active=group4_active,
             show_colorbar=show_colorbar,
-            modo_publico=modo_publico
+            modo_publico=modo_publico,
+            ocultar_card_no_celular=ocultar_card_no_celular
         )
         m.save(output_path)
         print(f"Mapa salvo com sucesso em: {output_path}")
