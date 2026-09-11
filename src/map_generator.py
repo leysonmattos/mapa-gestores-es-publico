@@ -175,6 +175,72 @@ class DockedMuniAndLegendControl(MacroElement):
         self.legend_html = legend_html
         self.modo_publico = modo_publico
 
+class TelaCheiaEmIframe(MacroElement):
+    """Faz o botão de tela cheia funcionar dentro do iframe do Streamlit.
+
+    O mapa é renderizado num iframe de altura fixa. O controle do Leaflet usa a
+    Fullscreen API quando ela existe e, quando não, aplica um "pseudo
+    fullscreen" com position:fixed — que dentro de um iframe preenche só o
+    iframe. No celular isso fazia o botão parecer não funcionar: o iOS não expõe
+    a Fullscreen API fora de vídeo, e expandir para 100% de um quadro de 680px
+    não muda quase nada.
+
+    Aqui o pseudo fullscreen é usado em todas as plataformas e, junto dele, o
+    próprio iframe é esticado para cobrir a janela da página que o contém. Fora
+    de um iframe o controle padrão já basta e nada é alterado.
+    """
+
+    _template = Template("""
+        {% macro script(this, kwargs) %}
+            (function () {
+                var mapObj = {{ this._parent.get_name() }};
+
+                var quadro = null;
+                try { quadro = window.frameElement; } catch (e) { quadro = null; }
+                if (!quadro) { return; }
+
+                var estiloAnterior = quadro.getAttribute('style');
+                var paginaPai = quadro.ownerDocument;
+                var overflowAnterior = null;
+
+                mapObj.on('enterFullscreen', function () {
+                    estiloAnterior = quadro.getAttribute('style');
+                    quadro.style.position = 'fixed';
+                    quadro.style.top = '0';
+                    quadro.style.left = '0';
+                    quadro.style.width = '100vw';
+                    quadro.style.maxWidth = '100vw';
+                    quadro.style.height = '100vh';
+                    quadro.style.zIndex = '2147483647';
+                    try {
+                        overflowAnterior = paginaPai.body.style.overflow;
+                        paginaPai.body.style.overflow = 'hidden';
+                    } catch (e) { /* página pai inacessível: só o iframe expande */ }
+                    setTimeout(function () { mapObj.invalidateSize(); }, 80);
+                });
+
+                mapObj.on('exitFullscreen', function () {
+                    if (estiloAnterior === null) {
+                        quadro.removeAttribute('style');
+                    } else {
+                        quadro.setAttribute('style', estiloAnterior);
+                    }
+                    try {
+                        if (overflowAnterior !== null) {
+                            paginaPai.body.style.overflow = overflowAnterior;
+                        }
+                    } catch (e) { /* idem */ }
+                    setTimeout(function () { mapObj.invalidateSize(); }, 80);
+                });
+            })();
+        {% endmacro %}
+    """)
+
+    def __init__(self):
+        super().__init__()
+        self._name = "TelaCheiaEmIframe"
+
+
 COLOR_PALETTES = {
     'Azul e Verde (YlGnBu)': ['#ffffcc', '#a1dab4', '#41b6c4', '#2c7fb8', '#253494'],
     'Tons de Azul (Blues)': ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'],
@@ -553,6 +619,17 @@ class ESMapGenerator:
                 opacity: 1 !important;
             }
 
+            /* Em telas estreitas a atribuição dos tiles ocupava quatro linhas
+               sobre o mapa. Reduzida, não ocultada: creditar a fonte dos tiles
+               é exigência de licença do OpenStreetMap e do Esri. */
+            @media (max-width: 640px) {
+                .leaflet-control-attribution {
+                    font-size: 9px !important;
+                    line-height: 1.3 !important;
+                    padding: 1px 4px !important;
+                }
+            }
+
             /* Ocultar completamente qualquer popup padrão sobre o mapa */
             .leaflet-popup, .leaflet-popup-pane, .leaflet-popup-content-wrapper, .leaflet-popup-tip-container {
                 display: none !important;
@@ -614,12 +691,17 @@ class ESMapGenerator:
         folium.LayerControl(position='topright', collapsed=False).add_to(m)
 
         # Adicionar botão de Tela Cheia
+        # force_pseudo_fullscreen deixa o comportamento igual em toda
+        # plataforma, inclusive no iOS, que não oferece a Fullscreen API.
+        # TelaCheiaEmIframe cuida de expandir o iframe do Streamlit junto.
         plugins.Fullscreen(
             position='topleft',
             title='Expandir para Tela Cheia',
             title_cancel='Sair da Tela Cheia',
-            force_separate_button=True
+            force_separate_button=True,
+            force_pseudo_fullscreen=True
         ).add_to(m)
+        m.add_child(TelaCheiaEmIframe())
 
         # Adicionar MiniMapa no canto inferior esquerdo
         plugins.MiniMap(
