@@ -66,7 +66,7 @@ with st.sidebar:
         """), unsafe_allow_html=True)
 
     st.markdown("---")
-    st.caption("Clique em um município no mapa para ver o gestor responsável e os dados oficiais do IBGE.")
+    st.caption("Arraste o mapa ou toque num município: o que fica sob a mira mostra o gestor responsável e os dados oficiais do IBGE.")
 
 # ==================== DADOS ====================
 df = carregar_dados()

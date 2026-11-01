@@ -30,6 +30,8 @@ publicada como um aplicativo separado, de acesso restrito.
 ├── src/
 │   ├── base_municipios.py      # Malha, metadados e atribuição de gestores
 │   ├── map_generator.py        # Mapa interativo (Folium)
+│   ├── mapa_organico.js        # Mira, painel, rótulos, busca e legenda do mapa
+│   ├── mapa_organico.css       # Aparência do mapa (embutida no HTML gerado)
 │   └── ui_comum.py             # Contatos dos gestores e card do município
 ├── app_publico.py              # Aplicativo Streamlit
 └── requirements.txt
